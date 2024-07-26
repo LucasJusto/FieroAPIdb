@@ -17,6 +17,7 @@ export class QuickChallengeService {
     quickChallenge: QuickChallenge,
     numberOfTeams: number
   ) {
+    console.log("quick challenge is online: ", quickChallenge.online)
     if (quickChallenge.online) {
       const owner = await userRepository.getUserById(quickChallenge.ownerId);
       const team = new Team(uuidV4(), owner.name, quickChallenge.id, owner);
@@ -28,6 +29,7 @@ export class QuickChallengeService {
         [teamUser]
       );
     } else {
+      console.log("caiu")
       const owner = await userRepository.getUserById(quickChallenge.ownerId);
       const team = new Team(uuidV4(), owner.name, quickChallenge.id, owner);
       const teamUser = new TeamUser(uuidV4(), team, 0, owner);
